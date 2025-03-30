@@ -52,7 +52,7 @@
 }
 
 .header-content {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -130,13 +130,14 @@
 /* LISTA DE NOTAS */
 /* ==================== */
 .notes-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: var(--space-xl) auto;
   padding: 0 var(--space-md);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-lg);
   contain: layout paint style;
+  padding: var(--space-md); 
 }
 
 /* ==================== */
@@ -158,7 +159,8 @@
 }
 
 .note-card:hover {
-  transform: translateY(-2px);
+  z-index: 3;
+  transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
 }
 
@@ -313,6 +315,8 @@
   }
   
   .note-card {
+    position: relative;
+    z-index: 1;
     height: 180px;
     padding: var(--space-md);
   }
@@ -320,4 +324,8 @@
   .editor-content {
     min-height: 250px;
   }
+}
+
+* {
+  box-sizing: border-box;
 }
