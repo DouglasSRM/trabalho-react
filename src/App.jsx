@@ -61,6 +61,7 @@ function App() {
         onCancelSelection={cancelSelection}
         onDeleteSelected={handleDeleteSelected}
         hasSelected={selectedNotes.length > 0}
+        selectedCount={selectedNotes.length}
       />
       
       <main className="notes-container">

@@ -29,6 +29,21 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected }) {
     }
   }, [])
   
+  const MAX_TITLE_PREVIEW_LENGTH = 30
+  const MAX_CONTENT_PREVIEW_LENGTH = 100 
+
+  const truncatedTitle = note.title 
+    ? note.title.length > MAX_TITLE_PREVIEW_LENGTH
+      ? `${note.title.substring(0, MAX_TITLE_PREVIEW_LENGTH)}...`
+      : note.title
+    : 'Sem título'
+
+  const truncatedContent = note.content
+    ? note.content.length > MAX_CONTENT_PREVIEW_LENGTH
+      ? `${note.content.substring(0, MAX_CONTENT_PREVIEW_LENGTH)}...`
+      : note.content
+    : 'Nenhum conteúdo ainda...'
+
   const previewContent = note.content.length > 100 
     ? `${note.content.substring(0, 100)}...` 
     : note.content
@@ -48,8 +63,8 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected }) {
       onTouchEnd={handleTouchEnd}
     >
       <div className="note-card-content">
-        <h3>{note.title || 'Sem título'}</h3>
-        <p>{previewContent || 'Nenhum conteúdo ainda...'}</p>
+        <h3 title = {note.title}>{truncatedTitle}</h3>
+        <p title = {note.content}>{previewContent}</p>
       </div>
       <div className="note-card-footer">
         <small>{new Date(note.lastEdited).toLocaleDateString()}</small>

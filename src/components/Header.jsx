@@ -5,7 +5,8 @@ export default function Header({
   isSelecting, 
   onCancelSelection, 
   onDeleteSelected, 
-  hasSelected 
+  hasSelected,
+  selectedCount 
 }) {
   return (
     <header className="app-header">
@@ -15,7 +16,7 @@ export default function Header({
             <button onClick={onCancelSelection} className="icon-button">
               <FiX size={24} />
             </button>
-            <h2>{hasSelected ? `${hasSelected} selecionada(s)` : 'Selecionar notas'}</h2>
+            <h2>{hasSelected ? `${selectedCount} selecionada(s)` : 'Selecionar notas'}</h2>
             {hasSelected && (
               <button onClick={onDeleteSelected} className="icon-button delete-button">
                 <FiTrash2 size={24} />
