@@ -2,24 +2,17 @@
 /* VARIÁVEIS ESTRUTURAIS */
 /* ==================== */
 :root {
-  /* Espaçamentos */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
-  
-  /* Bordas */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
-  
-  /* Transições */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.45s ease;
-  
-  /* Sombras */
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
@@ -33,9 +26,9 @@
   display: flex;
   flex-direction: column;
   background-color: var(--bg-primary);
-  margin: 0; 
-  padding: 0; 
-  overflow-x: hidden; 
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 /* ==================== */
@@ -132,12 +125,11 @@
 .notes-container {
   max-width: 1400px;
   margin: var(--space-xl) auto;
-  padding: 0 var(--space-md);
+  padding: var(--space-md);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-lg);
   contain: layout paint style;
-  padding: var(--space-md); 
 }
 
 /* ==================== */
@@ -233,13 +225,16 @@
 /* EDITOR DE NOTA */
 /* ==================== */
 .note-editor {
-  max-width: 800px;
-  margin: var(--space-xl) auto;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   background-color: var(--bg-secondary);
   border-radius: var(--radius-md);
-  padding: var(--space-lg);
+  padding: var(--space-xl);
   box-shadow: var(--shadow);
-  contain: content;
+  grid-column: 1 / -1;
+  position: relative;
+  z-index: 10;
 }
 
 .editor-header {
@@ -267,7 +262,7 @@
 
 .editor-content {
   width: 100%;
-  min-height: 400px;
+  min-height: 500px;
   background-color: var(--bg-tertiary);
   border: none;
   border-radius: var(--radius-sm);
@@ -296,6 +291,7 @@
   
   .note-editor {
     margin: var(--space-md);
+    padding: var(--space-lg);
     min-height: auto;
   }
   
@@ -315,8 +311,6 @@
   }
   
   .note-card {
-    position: relative;
-    z-index: 1;
     height: 180px;
     padding: var(--space-md);
   }
