@@ -27,7 +27,7 @@ function App() {
         prev.includes(note.id)
           ? prev.filter(id => id !== note.id)
           : [...prev, note.id]
-      )
+      )   
     } else {
       setEditingNote(note)
     }
@@ -35,7 +35,7 @@ function App() {
 
   const handleLongPress = (noteId) => {
     setIsSelecting(true)
-    setSelectedNotes([noteId])
+    //setSelectedNotes([noteId])
   }
 
   const cancelSelection = () => {
@@ -52,6 +52,10 @@ function App() {
     updateNote(updatedNote)
     setEditingNote(null)
   }
+
+  const sortedNotes = [...notes].sort((a, b) => {
+    return new Date(b.lastEdited) - new Date(a.lastEdited);
+  });
 
   return (
     <div className="app-container">
@@ -73,13 +77,14 @@ function App() {
           />
         ) : (
           <>
-            {notes.map(note => (
+            {sortedNotes.map(note => (
               <NoteCard
                 key={note.id}
                 note={note}
                 onClick={() => handleNoteClick(note)}
                 onLongPress={() => handleLongPress(note.id)}
                 isSelected={selectedNotes.includes(note.id)}
+                isSelecting={isSelecting}
               />
             ))}
           </>

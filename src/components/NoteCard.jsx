@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 
-export default function NoteCard({ note, onClick, onLongPress, isSelected }) {
+export default function NoteCard({ note, onClick, onLongPress, isSelected, isSelecting }) {
   const [isHovered, setIsHovered] = useState(false)
   const longPressTimer = useRef(null)
   
@@ -30,9 +30,9 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected }) {
   }, [])
   
   const MAX_TITLE_PREVIEW_LENGTH = 30
-  const MAX_CONTENT_PREVIEW_LENGTH = 100 
+  const MAX_CONTENT_PREVIEW_LENGTH = 100
 
-  const truncatedTitle = note.title 
+  const truncatedTitle = note.title
     ? note.title.length > MAX_TITLE_PREVIEW_LENGTH
       ? `${note.title.substring(0, MAX_TITLE_PREVIEW_LENGTH)}...`
       : note.title
@@ -43,10 +43,6 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected }) {
       ? `${note.content.substring(0, MAX_CONTENT_PREVIEW_LENGTH)}...`
       : note.content
     : 'Nenhum conteúdo ainda...'
-
-  const previewContent = note.content.length > 100 
-    ? `${note.content.substring(0, 100)}...` 
-    : note.content
   
   return (
     <div 
@@ -64,17 +60,17 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected }) {
     >
       <div className="note-card-content">
         <h3 title = {note.title}>{truncatedTitle}</h3>
-        <p title = {note.content}>{previewContent}</p>
+        <p title = {note.content}>{truncatedContent}</p>
       </div>
       <div className="note-card-footer">
-        <small>{new Date(note.lastEdited).toLocaleDateString()}</small>
+        <small>{new Date(note.lastEdited).toLocaleTimeString()} - {new Date(note.lastEdited).toLocaleDateString()}</small>
         {(isHovered || isSelected) && (
           <div className="note-actions">
-            {!isSelected && <FiEdit2 className="edit-icon" />}
-            {isSelected && <FiTrash2 className="delete-icon" />}
+            {!isSelected && !isSelecting && <FiEdit2 className="edit-icon" />}
+            {isSelecting &&<FiTrash2 classname="delete-icon" />}
           </div>
         )}
-      </div>
+      </div> 
     </div>
   )
 }

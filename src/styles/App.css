@@ -17,6 +17,11 @@
   --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ==================== */
 /* LAYOUT PRINCIPAL */
 /* ==================== */
@@ -148,6 +153,7 @@
   overflow: hidden;
   will-change: transform;
   contain: content;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .note-card:hover {
@@ -318,8 +324,4 @@
   .editor-content {
     min-height: 250px;
   }
-}
-
-* {
-  box-sizing: border-box;
 }
