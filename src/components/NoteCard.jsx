@@ -32,6 +32,7 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected, isSel
   const MAX_TITLE_PREVIEW_LENGTH = 30
   const MAX_CONTENT_PREVIEW_LENGTH = 100
 
+  // Melhor tratamento para notas sem conteúdo
   const truncatedTitle = note.title
     ? note.title.length > MAX_TITLE_PREVIEW_LENGTH
       ? `${note.title.substring(0, MAX_TITLE_PREVIEW_LENGTH)}...`
@@ -44,6 +45,18 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected, isSel
       : note.content
     : 'Nenhum conteúdo ainda...'
   
+  // Formatação de data mais resiliente
+  const formatDate = (dateString) => {
+    try {
+      const date = dateString?.toDate?.() || new Date(dateString)
+      return isNaN(date.getTime()) 
+        ? 'Data inválida' 
+        : `${date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} - ${date.toLocaleDateString()}`
+    } catch {
+      return 'Data inválida'
+    }
+  }
+
   return (
     <div 
       className={`note-card ${isSelected ? 'selected' : ''}`}
@@ -57,17 +70,24 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected, isSel
       }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      aria-selected={isSelected}
+      role="button"
+      tabIndex={0}
     >
       <div className="note-card-content">
-        <h3 title = {note.title}>{truncatedTitle}</h3>
-        <p title = {note.content}>{truncatedContent}</p>
+        <h3 title={note.title}>{truncatedTitle}</h3>
+        <p title={note.content}>{truncatedContent}</p>
       </div>
       <div className="note-card-footer">
-        <small>{new Date(note.lastEdited).toLocaleTimeString()} - {new Date(note.lastEdited).toLocaleDateString()}</small>
+        <small>{formatDate(note.lastEdited)}</small>
         {(isHovered || isSelected) && (
           <div className="note-actions">
-            {!isSelected && !isSelecting && <FiEdit2 className="edit-icon" />}
-            {isSelecting &&<FiTrash2 classname="delete-icon" />}
+            {!isSelected && !isSelecting && (
+              <FiEdit2 className="edit-icon" aria-label="Editar nota" />
+            )}
+            {isSelecting && (
+              <FiTrash2 className="delete-icon" aria-label="Excluir nota" />
+            )}
           </div>
         )}
       </div> 

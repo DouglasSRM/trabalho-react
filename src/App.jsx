@@ -12,13 +12,18 @@ function App() {
   const [selectedNotes, setSelectedNotes] = useState([])
   const [isSelecting, setIsSelecting] = useState(false)
 
-  const handleCreateNote = () => {
+  const handleCreateNote = async () => {
     const newNote = {
       title: 'Nova Nota',
       content: ''
     }
-    const createdNote = addNote(newNote)
-    setEditingNote(createdNote)
+    try {
+      const createdNote = await addNote(newNote)
+      setEditingNote(createdNote)
+    } catch (error) {
+      console.error("Erro ao criar nota:", error)
+      // Você pode adicionar um feedback visual para o usuário aqui
+    }
   }
 
   const handleNoteClick = (note) => {
@@ -35,7 +40,6 @@ function App() {
 
   const handleLongPress = (noteId) => {
     setIsSelecting(true)
-    //setSelectedNotes([noteId])
   }
 
   const cancelSelection = () => {
@@ -43,19 +47,31 @@ function App() {
     setSelectedNotes([])
   }
 
-  const handleDeleteSelected = () => {
-    deleteNotes(selectedNotes)
-    cancelSelection()
+  const handleDeleteSelected = async () => {
+    try {
+      await deleteNotes(selectedNotes)
+      cancelSelection()
+    } catch (error) {
+      console.error("Erro ao deletar notas:", error)
+      // Você pode adicionar um feedback visual para o usuário aqui
+    }
   }
 
-  const handleSaveNote = (updatedNote) => {
-    updateNote(updatedNote)
-    setEditingNote(null)
+  const handleSaveNote = async (updatedNote) => {
+    try {
+      await updateNote(updatedNote)
+      setEditingNote(null)
+    } catch (error) {
+      console.error("Erro ao salvar nota:", error)
+      // Você pode adicionar um feedback visual para o usuário aqui
+    }
   }
 
+  // Não precisamos mais ordenar manualmente se a query do Firebase já retorna ordenado
+  // Mas mantemos caso queira uma ordenação diferente no cliente
   const sortedNotes = [...notes].sort((a, b) => {
-    return new Date(b.lastEdited) - new Date(a.lastEdited);
-  });
+    return new Date(b.lastEdited) - new Date(a.lastEdited)
+  })
 
   return (
     <div className="app-container">
