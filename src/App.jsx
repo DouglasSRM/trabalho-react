@@ -53,6 +53,17 @@ function App() {
     setEditingNote(null)
   }
 
+  const handleDeleteNote = (note) => {
+    const confirma = window.confirm('Tem certeza que deseja deletar essa nota?');
+
+    if (confirma) {
+      if (editingNote && editingNote.id === note.id) {
+        setEditingNote(null);
+      }
+      deleteNotes([note.id])
+    }
+  }
+
   const sortedNotes = [...notes].sort((a, b) => {
     return new Date(b.lastEdited) - new Date(a.lastEdited);
   });
@@ -73,6 +84,7 @@ function App() {
           <NoteEditor 
             note={editingNote} 
             onSave={handleSaveNote}
+            onDelete={handleDeleteNote}
             onClose={() => setEditingNote(null)} 
           />
         ) : (

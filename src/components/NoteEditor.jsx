@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { FiSave, FiArrowLeft } from 'react-icons/fi'
+import { FiSave, FiTrash2, FiArrowLeft } from 'react-icons/fi'
 
-export default function NoteEditor({ note, onSave, onClose }) {
+export default function NoteEditor({ note, onSave, onDelete, onClose }) {
   const [title, setTitle] = useState(note.title || 'Nova Nota')
   const [content, setContent] = useState(note.content || '')
 
@@ -18,11 +18,20 @@ export default function NoteEditor({ note, onSave, onClose }) {
     })
   }
 
+  const handleDelete = () => {
+    onDelete({
+      ...note
+    })
+  }
+
   return (
     <div className="note-editor">
       <div className="editor-header">
         <button onClick={onClose} className="icon-button">
           <FiArrowLeft size={24} />
+        </button>
+        <button onClick={handleDelete} className="icon-button delete-button">
+          <FiTrash2 size={24} />
         </button>
         <button onClick={handleSave} className="icon-button save-button">
           <FiSave size={24} />

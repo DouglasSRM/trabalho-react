@@ -67,7 +67,7 @@ export default function NoteCard({ note, onClick, onLongPress, isSelected, isSel
         {(isHovered || isSelected) && (
           <div className="note-actions">
             {!isSelected && !isSelecting && <FiEdit2 className="edit-icon" />}
-            {isSelecting &&<FiTrash2 classname="delete-icon" />}
+            {isSelecting &&<FiTrash2 className="delete-icon" />}
           </div>
         )}
       </div> 

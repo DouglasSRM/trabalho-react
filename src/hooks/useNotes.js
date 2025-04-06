@@ -33,7 +33,10 @@ export function useNotes() {
   }
 
   const deleteNotes = (noteIds) => {
-    setNotes(prev => prev.filter(note => !noteIds.includes(note.id)))
+    setNotes(prev => {
+      const updatedNotes = prev.filter(note => !noteIds.includes(note.id))
+      return updatedNotes
+    })
   }
 
   return { notes, addNote, updateNote, deleteNotes }
