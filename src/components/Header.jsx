@@ -1,12 +1,12 @@
-import { FiPlus, FiTrash2, FiX } from 'react-icons/fi'
+import { FiPlus, FiTrash2, FiX } from "react-icons/fi";
 
-export default function Header({ 
-  onCreateNote, 
-  isSelecting, 
-  onCancelSelection, 
-  onDeleteSelected, 
+export default function Header({
+  onCreateNote,
+  isSelecting,
+  onCancelSelection,
+  onDeleteSelected,
   hasSelected,
-  selectedCount 
+  selectedCount,
 }) {
   return (
     <header className="app-header">
@@ -16,16 +16,23 @@ export default function Header({
             <button onClick={onCancelSelection} className="icon-button">
               <FiX size={24} />
             </button>
-            <h2>{hasSelected ? `${selectedCount} selecionada(s)` : 'Selecionar notas'}</h2>
+            <h2>
+              {hasSelected
+                ? `${selectedCount} selecionada(s)`
+                : "Selecionar notas"}
+            </h2>
             {hasSelected && (
-              <button onClick={onDeleteSelected} className="icon-button delete-button">
+              <button
+                onClick={onDeleteSelected}
+                className="icon-button delete-button"
+              >
                 <FiTrash2 size={24} />
               </button>
             )}
           </>
         ) : (
           <>
-            <h1>Notas</h1>
+            <h1>NotaFácil</h1>
             <button onClick={onCreateNote} className="icon-button">
               <FiPlus size={24} />
             </button>
@@ -33,5 +40,5 @@ export default function Header({
         )}
       </div>
     </header>
-  )
+  );
 }
