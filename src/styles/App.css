@@ -40,6 +40,7 @@
 /* HEADER */
 /* ==================== */
 .app-header {
+  min-height: 88px;
   background-color: var(--bg-secondary);
   padding: var(--space-md);
   box-shadow: var(--shadow);
@@ -89,7 +90,7 @@
 }
 
 .icon-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -215,7 +216,8 @@
   gap: var(--space-sm);
 }
 
-.edit-icon, .delete-icon {
+.edit-icon,
+.delete-icon {
   transition: color var(--transition-fast);
 }
 
@@ -294,17 +296,17 @@
     margin: var(--space-md) auto;
     gap: var(--space-md);
   }
-  
+
   .note-editor {
     margin: var(--space-md);
     padding: var(--space-lg);
     min-height: auto;
   }
-  
+
   .editor-content {
     min-height: 300px;
   }
-  
+
   .app-header {
     padding: var(--space-sm);
   }
@@ -315,12 +317,12 @@
     --space-md: 0.75rem;
     --space-lg: 1rem;
   }
-  
+
   .note-card {
     height: 180px;
     padding: var(--space-md);
   }
-  
+
   .editor-content {
     min-height: 250px;
   }
