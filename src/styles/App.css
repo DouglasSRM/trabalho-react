@@ -2,11 +2,24 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+<<<<<<< Updated upstream
+=======
+  background-color: rgb(79, 79, 73);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+>>>>>>> Stashed changes
 }
 
 .app-header {
+<<<<<<< Updated upstream
   background-color: var(--bg-secondary);
   padding: 1rem;
+=======
+  min-height: 88px;
+  background-color: rgb(12, 11, 11);
+  padding: var(--space-md);
+>>>>>>> Stashed changes
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
@@ -121,11 +134,20 @@
 }
 
 .note-editor {
+<<<<<<< Updated upstream
   max-width: 800px;
   margin: 2rem auto;
   background-color: var(--bg-secondary);
   border-radius: 8px;
   padding: 1.5rem;
+=======
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgb(30, 30, 30);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+>>>>>>> Stashed changes
   box-shadow: var(--shadow);
 }
 
