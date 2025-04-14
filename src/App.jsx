@@ -54,7 +54,7 @@ function App() {
   }
 
   const handleDeleteNote = (note) => {
-    const confirma = window.confirm('Tem certeza que deseja deletar essa nota?');
+    const confirma = window.confirm('Deseja excluir essa anotação?');
 
     if (confirma) {
       if (editingNote && editingNote.id === note.id) {

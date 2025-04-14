@@ -9,6 +9,7 @@ export function useNotes() {
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
+    console.log(JSON.stringify(notes))
   }, [notes])
 
   const addNote = (note) => {
